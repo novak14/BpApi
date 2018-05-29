@@ -15,7 +15,7 @@ namespace BpApi.Controllers
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public string Get()
         {
             string sql = @"SELECT * FROM UserDetails";
 
@@ -28,7 +28,7 @@ namespace BpApi.Controllers
             }
             stopwatch.Stop();
             var testStopwatch = stopwatch.Elapsed.ToString();
-            return new string[] { testStopwatch, "value2" };
+            return testStopwatch;
         }
 
         // GET api/values/5
