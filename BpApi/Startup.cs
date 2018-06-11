@@ -23,6 +23,10 @@ namespace BpApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
+
+            services.AddModuleAccessFacade(o => o.connectionString = Configuration.GetSection("ConnectionStrings:BpApi.Module.AccessFacadeConnection").Value);
+
             services.AddMvc();
         }
 
