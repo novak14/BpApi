@@ -1,5 +1,7 @@
 using AccessFacade.Business;
 using AccessFacade.Configuration;
+using AccessFacade.Dal.Repository.Abstraction;
+using AccessFacade.Dal.Repository.Implementation;
 using System;
 
 
@@ -32,11 +34,15 @@ namespace Microsoft.Extensions.DependencyInjection
             //connectionString si vezme sam DbContext z IOptions<>
 
             //REPOSITORY
+            services.AddScoped<IDapperSyncRepository, DapperSyncRepository>();
+            services.AddScoped<ITestRepository, TestRepository>();
 
 
             //SERVICES - zapouzdreni vsechn repositories pod jeden objekt
             //Tyto services pak budou pouzivat ostatni tridy/objetky
             services.AddScoped<AccessFacadeService, AccessFacadeService>();
+            services.AddScoped<DapperService, DapperService>();
+
 
             return services;
         }

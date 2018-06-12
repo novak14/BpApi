@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AccessFacade.Business;
 using BpApi.Models;
 using Dapper;
 using Microsoft.AspNetCore.Mvc;
@@ -13,29 +14,28 @@ namespace BpApi.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly AccessFacadeService accessFacadeService;
+        private readonly DapperService dapperService;
+
+
+        public ValuesController(AccessFacadeService accessFacadeService, DapperService dapperService)
+        {
+            this.accessFacadeService = accessFacadeService;
+            this.dapperService = dapperService;
+        }
+
         // GET api/values
         [HttpGet]
         public string Get()
         {
-            string sql = @"SELECT * FROM UserDetails";
-
-            Stopwatch stopwatch = Stopwatch.StartNew();
-
-            using (var connection = new SqlConnection("Data Source=blue.globenet.cz;Initial Catalog=d001420;Integrated Security=False;User ID=d001420a;Password=snbx8DkjUE;Connect Timeout=15;Encrypt=False;Packet Size=4096"))
-            {
-                var tmp = connection.Query<UserInformation>(sql);
-                //dom = connection.Query<TestModel>(sql);
-            }
-            stopwatch.Stop();
-            var testStopwatch = stopwatch.Elapsed.ToString();
-            return testStopwatch;
+            return accessFacadeService.SelectDapperSync() + dapperService.SelectTest();
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return accessFacadeService.SelectTest();
         }
 
         // POST api/values

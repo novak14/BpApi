@@ -5,12 +5,12 @@ using System.Text;
 
 namespace AccessFacade.Business
 {
-    public class AccessFacadeService
+    public class DapperService
     {
         private IDapperSyncRepository dapperSync;
         private ITestRepository testRepository;
 
-        public AccessFacadeService (IDapperSyncRepository dapperSync, ITestRepository testRepository)
+        public DapperService(IDapperSyncRepository dapperSync, ITestRepository testRepository)
         {
             this.dapperSync = dapperSync;
             this.testRepository = testRepository;
