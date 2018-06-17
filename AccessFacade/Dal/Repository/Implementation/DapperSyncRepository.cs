@@ -24,6 +24,27 @@ namespace AccessFacade.Dal.Repository.Implementation
             this.options = options.Value;
         }
 
+        public string InsertTest(DateTime date, string cas)
+        {
+            string sql = @"INSERT INTO CasoveTesty(Datum, JinyCas) VALUES(@dat, @time)";
+
+            Stopwatch stopwatch = Stopwatch.StartNew();
+
+            using (var connection = new SqlConnection("Data Source=blue.globenet.cz;Initial Catalog=d001420;Integrated Security=False;User ID=d001420a;Password=snbx8DkjUE;Connect Timeout=15;Encrypt=False;Packet Size=4096"))
+            {
+                var tmp = connection.Execute(sql, new { dat = date, time = cas });
+                if (tmp > 0)
+                {
+                    int a = 3;
+                }
+
+                //dom = connection.Query<TestModel>(sql);
+            }
+            stopwatch.Stop();
+            var testStopwatch = stopwatch.Elapsed.ToString();
+            return testStopwatch;
+        }
+
         public string Select()
         {
             string sql = @"SELECT * FROM UserDetails";

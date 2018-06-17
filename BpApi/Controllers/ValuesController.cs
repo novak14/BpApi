@@ -28,7 +28,9 @@ namespace BpApi.Controllers
         [HttpGet]
         public string Get()
         {
-            return accessFacadeService.SelectDapperSync() + dapperService.SelectTest();
+            string time = accessFacadeService.SelectDapperSync();
+            Put(1, time);
+            return time;
         }
 
         // GET api/values/5
@@ -48,6 +50,7 @@ namespace BpApi.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
+            dapperService.InsertDapperSync(value);
         }
 
         // DELETE api/values/5

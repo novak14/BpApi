@@ -28,8 +28,10 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string InsertDapperSync()
+        public string InsertDapperSync(string time)
         {
+            DateTime date = DateTime.Now;
+            dapperSync.InsertTest(date, time);
             return "test";
         }
 
