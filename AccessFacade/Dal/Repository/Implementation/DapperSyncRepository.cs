@@ -11,7 +11,7 @@ using System.Text;
 
 namespace AccessFacade.Dal.Repository.Implementation
 {
-    public class DapperSyncRepository : BusinessObject, IDapperSyncRepository
+    public class DapperSyncRepository : IDapperSyncRepository
     {
         public readonly AccessFacadeOptions options;
 
@@ -22,6 +22,16 @@ namespace AccessFacade.Dal.Repository.Implementation
                 throw new ArgumentNullException(nameof(options));
             }
             this.options = options.Value;
+        }
+
+        public string Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Insert()
+        {
+            throw new NotImplementedException();
         }
 
         public string InsertTest(DateTime date, string cas)
@@ -75,6 +85,11 @@ namespace AccessFacade.Dal.Repository.Implementation
             stopwatch.Stop();
             var testStopwatch = stopwatch.Elapsed.ToString();
             return testStopwatch;
+        }
+
+        public string Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

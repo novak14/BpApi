@@ -36,12 +36,22 @@ namespace Microsoft.Extensions.DependencyInjection
             //REPOSITORY
             services.AddScoped<IDapperSyncRepository, DapperSyncRepository>();
             services.AddScoped<ITestRepository, TestRepository>();
+            services.AddScoped<IDapperAsyncRepository, DapperAsyncRepository>();
+            services.AddScoped<IDapperProceudureRepository, DapperProcedureRepository>();
+            services.AddScoped<IAdoSyncRepository, AdoSyncRepository>();
+            services.AddScoped<IAdoASyncRepository, AdoAsyncRepository>();
+            services.AddScoped<IAdoProcedureRepository, AdoProcedureRepository>();
+            services.AddScoped<IEFCoreSyncRepository, EFCoreSyncRepository>();
+            services.AddScoped<IEFCoreASyncRepository, EFCoreASyncRepository>();
+            services.AddScoped<IEFCoreProcedureRepository, EFCoreProcedureRepository>();
 
 
             //SERVICES - zapouzdreni vsechn repositories pod jeden objekt
             //Tyto services pak budou pouzivat ostatni tridy/objetky
             services.AddScoped<AccessFacadeService, AccessFacadeService>();
             services.AddScoped<DapperService, DapperService>();
+            services.AddScoped<AdoService, AdoService>();
+            services.AddScoped<EFCoreService, EFCoreService>();
 
 
             return services;

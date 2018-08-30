@@ -7,7 +7,7 @@ namespace AccessFacade.Dal.Repository.Abstraction
 {
     public interface IDapperSyncRepository : BusinessObject
     {
-        string Select();
+        string SelectTest();
         string InsertTest(DateTime date, string cas);
 
     }

@@ -6,6 +6,9 @@ namespace AccessFacade.Dal.Repository.Abstraction
 {
     public interface BusinessObject
     {
-        string SelectTest();
+        string Select();
+        string Insert();
+        string Update();
+        string Delete();
     }
 }

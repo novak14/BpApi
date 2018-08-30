@@ -16,18 +16,44 @@ namespace BpApi.Controllers
     {
         private readonly AccessFacadeService accessFacadeService;
         private readonly DapperService dapperService;
+        private readonly AdoService adoService;
+        private readonly EFCoreService eFCoreService;
 
 
-        public ValuesController(AccessFacadeService accessFacadeService, DapperService dapperService)
+        public ValuesController(
+            AccessFacadeService accessFacadeService, 
+            DapperService dapperService,
+            AdoService adoService,
+            EFCoreService eFCoreService)
         {
             this.accessFacadeService = accessFacadeService;
             this.dapperService = dapperService;
+            this.adoService = adoService;
+            this.eFCoreService = eFCoreService;
         }
 
         // GET api/values
         [HttpGet]
         public string Get()
         {
+            #region Sync
+            string dapperSync = dapperService.SelectDapperSync();
+            string adoSync = adoService.SelectAdoSync();
+            string efCoreSync = eFCoreService.SelectEFCoreSync();
+            #endregion
+
+            #region Asynchronous
+            string dapperASync = dapperService.SelectDapperASync();
+            string adoAsync = adoService.SelectAdoASync();
+            string efCoreAsync = eFCoreService.SelectEFCoreASync();
+            #endregion
+
+            #region Procedures
+            string dapperProcedure = dapperService.SelectDapperProcedure();
+            string adoProcedure = adoService.SelectAdoProcedure();
+            string efCoreProcedure = eFCoreService.SelectEFCoreProcedure();
+            #endregion
+
             string time = accessFacadeService.SelectDapperSync();
             Put(1, time);
             return time;
@@ -44,19 +70,69 @@ namespace BpApi.Controllers
         [HttpPost]
         public void Post([FromBody]string value)
         {
+            #region Sync
+            string dapperSync = dapperService.InsertDapperSync();
+            string adoSync = adoService.InsertAdoSync();
+            string efCoreSync = eFCoreService.InsertEFCoreSync();
+            #endregion
+
+            #region Asynchronous
+            string dapperASync = dapperService.InsertDapperASync();
+            string adoAsync = adoService.InsertAdoASync();
+            string efCoreAsync = eFCoreService.InsertEFCoreASync();
+            #endregion
+
+            #region Procedures
+            string dapperProcedure = dapperService.InsertDapperProcedure();
+            string adoProcedure = adoService.InsertAdoProcedure();
+            string efCoreProcedure = eFCoreService.InsertEFCoreProcedure();
+            #endregion
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
-            dapperService.InsertDapperSync(value);
+            #region Sync
+            string dapperSync = dapperService.UpdateDapperSync();
+            string adoSync = adoService.UpdateAdoSync();
+            string efCoreSync = eFCoreService.UpdateEFCoreSync();
+            #endregion
+
+            #region Asynchronous
+            string dapperASync = dapperService.UpdateDapperASync();
+            string adoAsync = adoService.UpdateAdoASync();
+            string efCoreAsync = eFCoreService.UpdateEFCoreASync();
+            #endregion
+
+            #region Procedures
+            string dapperProcedure = dapperService.UpdateDapperProcedure();
+            string adoProcedure = adoService.UpdateAdoProcedure();
+            string efCoreProcedure = eFCoreService.UpdateEFCoreProcedure();
+            #endregion
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            #region Sync
+            string dapperSync = dapperService.DeleteDapperSync();
+            string adoSync = adoService.DeleteAdoSync();
+            string efCoreSync = eFCoreService.DeleteEFCoreSync();
+            #endregion
+
+            #region Asynchronous
+            string dapperASync = dapperService.DeleteDapperASync();
+            string adoAsync = adoService.DeleteAdoASync();
+            string efCoreAsync = eFCoreService.DeleteEFCoreASync();
+            #endregion
+
+            #region Procedures
+            string dapperProcedure = dapperService.DeleteDapperProcedure();
+            string adoProcedure = adoService.DeleteAdoProcedure();
+            string efCoreProcedure = eFCoreService.DeleteEFCoreProcedure();
+            #endregion
         }
     }
 }

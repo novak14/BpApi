@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AccessFacade.Dal.Repository.Abstraction
 {
-    class IEFCoreProcedureRepository
+    public interface IEFCoreProcedureRepository : BusinessObject
     {
     }
 }
