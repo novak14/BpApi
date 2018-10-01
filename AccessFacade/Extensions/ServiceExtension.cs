@@ -1,5 +1,6 @@
 using AccessFacade.Business;
 using AccessFacade.Configuration;
+using AccessFacade.Dal.Context;
 using AccessFacade.Dal.Repository.Abstraction;
 using AccessFacade.Dal.Repository.Implementation;
 using System;
@@ -32,6 +33,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.Configure(setupAction);
 
             //connectionString si vezme sam DbContext z IOptions<>
+            services.AddDbContext<EfCoreDbContext>();
 
             //REPOSITORY
             services.AddScoped<IDapperSyncRepository, DapperSyncRepository>();

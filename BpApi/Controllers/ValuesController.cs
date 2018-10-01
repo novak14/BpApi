@@ -38,26 +38,33 @@ namespace BpApi.Controllers
         public string Get()
         {
             #region Sync
-            string dapperSync = dapperService.SelectDapperSync();
-            string adoSync = adoService.SelectAdoSync();
-            string efCoreSync = eFCoreService.SelectEFCoreSync();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            for (int i = 0; i < 1000; i++)
+            {
+                string dapperSync = dapperService.SelectDapperSync();
+                //string efCoreSync = eFCoreService.SelectEFCoreSync();
+            }
+            stopwatch.Stop();
+            //string adoSync = adoService.SelectAdoSync();
+            //string efCoreSync = eFCoreService.SelectEFCoreSync();
             #endregion
 
-            #region Asynchronous
-            string dapperASync = dapperService.SelectDapperASync();
-            string adoAsync = adoService.SelectAdoASync();
-            string efCoreAsync = eFCoreService.SelectEFCoreASync();
-            #endregion
+            //#region Asynchronous
+            //string dapperASync = dapperService.SelectDapperASync();
+            //string adoAsync = adoService.SelectAdoASync();
+            //string efCoreAsync = eFCoreService.SelectEFCoreASync();
+            //#endregion
 
-            #region Procedures
-            string dapperProcedure = dapperService.SelectDapperProcedure();
-            string adoProcedure = adoService.SelectAdoProcedure();
-            string efCoreProcedure = eFCoreService.SelectEFCoreProcedure();
-            #endregion
+            //#region Procedures
+            //string dapperProcedure = dapperService.SelectDapperProcedure();
+            //string adoProcedure = adoService.SelectAdoProcedure();
+            //string efCoreProcedure = eFCoreService.SelectEFCoreProcedure();
+            //#endregion
 
-            string time = accessFacadeService.SelectDapperSync();
-            Put(1, time);
-            return time;
+            //string time = accessFacadeService.SelectDapperSync();
+            //Put(1, time);
+            return stopwatch.Elapsed.ToString();
         }
 
         // GET api/values/5

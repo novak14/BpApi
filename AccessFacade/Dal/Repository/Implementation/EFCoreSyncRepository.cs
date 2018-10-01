@@ -1,23 +1,22 @@
 ﻿using AccessFacade.Configuration;
+using AccessFacade.Dal.Context;
 using AccessFacade.Dal.Repository.Abstraction;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AccessFacade.Dal.Repository.Implementation
 {
     public class EFCoreSyncRepository : IEFCoreSyncRepository
     {
-        public readonly AccessFacadeOptions options;
+        private readonly EfCoreDbContext context;
 
-        public EFCoreSyncRepository(IOptions<AccessFacadeOptions> options)
+        public EFCoreSyncRepository(EfCoreDbContext context)
         {
-            if (options == null)
-            {
-                throw new ArgumentNullException(nameof(options));
-            }
-            this.options = options.Value;
+            this.context = context;
         }
 
         public string Delete()
@@ -32,7 +31,15 @@ namespace AccessFacade.Dal.Repository.Implementation
 
         public string Select()
         {
-            throw new NotImplementedException();
+            //#region normalSelect
+            //var normalSelect = context.UserTest;
+            //#endregion
+
+            #region oneToMany
+            var test = context.UserTest
+                .Include(one => one.OneToTest);
+            #endregion
+            return "ahoj";
         }
 
         public string Update()

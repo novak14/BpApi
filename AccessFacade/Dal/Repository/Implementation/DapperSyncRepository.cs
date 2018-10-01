@@ -1,4 +1,5 @@
 ﻿using AccessFacade.Configuration;
+using AccessFacade.Dal.Entities;
 using AccessFacade.Dal.Repository.Abstraction;
 using BpApi.Models;
 using Dapper;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace AccessFacade.Dal.Repository.Implementation
@@ -40,7 +42,7 @@ namespace AccessFacade.Dal.Repository.Implementation
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 
-            using (var connection = new SqlConnection("Data Source=blue.globenet.cz;Initial Catalog=d001420;Integrated Security=False;User ID=d001420a;Password=snbx8DkjUE;Connect Timeout=15;Encrypt=False;Packet Size=4096"))
+            using (var connection = new SqlConnection(options.connectionString))
             {
                 var tmp = connection.Execute(sql, new { dat = date, time = cas });
                 if (tmp > 0)
@@ -57,18 +59,35 @@ namespace AccessFacade.Dal.Repository.Implementation
 
         public string Select()
         {
-            string sql = @"SELECT * FROM UserDetails";
+            //#region normalSelect
+            //string sql = @"SELECT * FROM UserTest";
 
-            Stopwatch stopwatch = Stopwatch.StartNew();
+            //Stopwatch stopwatch = Stopwatch.StartNew();
 
-            using (var connection = new SqlConnection("Data Source=blue.globenet.cz;Initial Catalog=d001420;Integrated Security=False;User ID=d001420a;Password=snbx8DkjUE;Connect Timeout=15;Encrypt=False;Packet Size=4096"))
+            //using (var connection = new SqlConnection(options.connectionString))
+            //{
+            //    var tmp = connection.Query<UserTest>(sql);
+            //}
+            //stopwatch.Stop();
+            //var testStopwatch = stopwatch.Elapsed.ToString();
+            //#endregion
+
+            #region oneToMany
+            string sqlOneToMany = @"SELECT * FROM UserTest INNER JOIN OneToTest ON OneToTest.Id = UserTest.FkOneToTestId";
+
+
+            using (var connection = new SqlConnection(options.connectionString))
             {
-                var tmp = connection.Query<UserInformation>(sql);
-                //dom = connection.Query<TestModel>(sql);
+                var tmp = connection.Query<UserTest, OneToTest, UserTest>(sqlOneToMany, 
+                    (userTest, oneToTest) =>
+                    {
+                        userTest.OneToTest = oneToTest;
+                        return userTest;
+                    }).ToList();
             }
-            stopwatch.Stop();
-            var testStopwatch = stopwatch.Elapsed.ToString();
-            return testStopwatch;
+
+            #endregion
+            return "ahoj";
         }
 
         public string SelectTest()
@@ -77,7 +96,7 @@ namespace AccessFacade.Dal.Repository.Implementation
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 
-            using (var connection = new SqlConnection("Data Source=blue.globenet.cz;Initial Catalog=d001420;Integrated Security=False;User ID=d001420a;Password=snbx8DkjUE;Connect Timeout=15;Encrypt=False;Packet Size=4096"))
+            using (var connection = new SqlConnection(options.connectionString))
             {
                 var tmp = connection.Query<UserInformation>(sql);
                 //dom = connection.Query<TestModel>(sql);
