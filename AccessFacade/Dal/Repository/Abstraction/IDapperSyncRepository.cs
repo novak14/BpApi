@@ -9,6 +9,5 @@ namespace AccessFacade.Dal.Repository.Abstraction
     {
         string SelectTest();
         string InsertTest(DateTime date, string cas);
-
     }
 }

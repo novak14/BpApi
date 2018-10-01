@@ -25,7 +25,8 @@ namespace BpApi
         {
             services.AddOptions();
 
-            services.AddModuleAccessFacade(o => o.connectionString = Configuration.GetSection("ConnectionStrings:BpApi.Module.AccessFacadeConnection").Value);
+            //services.AddModuleAccessFacade(o => o.connectionString = Configuration.GetSection("ConnectionStrings:BpApi.Module.AccessFacadeConnection").Value);
+            services.AddModuleAccessFacade(o => o.connectionString = Configuration.GetConnectionString("BpApiLocal"));
 
             services.AddMvc();
         }

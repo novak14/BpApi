@@ -82,7 +82,7 @@ namespace AccessFacade.Business
 
         public string SelectTest()
         {
-            return testRepository.SelectTest();
+            return testRepository.Select();
         }
     }
 }
