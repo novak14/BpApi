@@ -8,106 +8,109 @@ namespace AccessFacade.Business
     public class DapperService
     {
         private IDapperSyncRepository dapperSync;
-        private ITestRepository testRepository;
         private IDapperAsyncRepository dapperAsyncRepository;
         private IDapperProceudureRepository dapperProcedureRepository;
         
 
         public DapperService(
             IDapperSyncRepository dapperSync, 
-            ITestRepository testRepository,
             IDapperAsyncRepository dapperAsyncRepository,
             IDapperProceudureRepository dapperProcedureRepository)
         {
             this.dapperSync = dapperSync;
-            this.testRepository = testRepository;
             this.dapperAsyncRepository = dapperAsyncRepository;
             this.dapperProcedureRepository = dapperProcedureRepository;
         }
 
+        #region sync
         // Synchronize Dapper
         public string SelectDapperSync()
         {
-            var test = dapperSync.Select();
-            return dapperSync.Select();
+            dapperSync.Select();
+            return "test";
         }
 
         public string UpdateDapperSync()
         {
-            var test = dapperSync.Update();
+            dapperSync.Update();
 
             return "test";
         }
 
-        public string InsertDapperSync()
+        public string InsertDapperSync(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            var test = dapperSync.Insert();
+            dapperSync.Insert(FirstName, LastName, Address, FkOneToTestId);
 
             return "test";
         }
 
         public string DeleteDapperSync()
         {
-            var test = dapperSync.Delete();
+            dapperSync.Delete();
 
             return "test";
         }
+        #endregion
 
+        #region async
         // Asychronize Dapper
         public string SelectDapperASync()
         {
-            var test = dapperAsyncRepository.Select();
+            dapperAsyncRepository.Select();
             return "test";
         }
 
         public string UpdateDapperASync()
         {
-            var test = dapperAsyncRepository.Update();
+            dapperAsyncRepository.Update();
 
             return "test";
         }
 
-        public string InsertDapperASync()
+        public string InsertDapperASync(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            var test = dapperAsyncRepository.Insert();
+            dapperAsyncRepository.Insert(FirstName, LastName, Address, FkOneToTestId);
 
             return "test";
         }
 
         public string DeleteDapperASync()
         {
-            var test = dapperAsyncRepository.Delete();
+            dapperAsyncRepository.Delete();
 
             return "test";
         }
+        #endregion
 
+        #region procedure
         // Procedure Dapper
         public string SelectDapperProcedure()
         {
-            var test = dapperProcedureRepository.Select();
+            dapperProcedureRepository.Select();
 
             return "test";
         }
 
         public string UpdateDapperProcedure()
         {
-            var test = dapperProcedureRepository.Update();
+            dapperProcedureRepository.Update();
 
             return "test";
         }
 
-        public string InsertDapperProcedure()
+        public string InsertDapperProcedure(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            var test = dapperProcedureRepository.Insert();
+            dapperProcedureRepository.Insert(FirstName, LastName, Address, FkOneToTestId);
 
             return "test";
         }
 
         public string DeleteDapperProcedure()
         {
-            var test = dapperProcedureRepository.Delete();
+            dapperProcedureRepository.Delete();
 
             return "test";
         }
+        #endregion
     }
 }

@@ -1,41 +1,42 @@
 ﻿using AccessFacade.Configuration;
+using AccessFacade.Dal.Context;
 using AccessFacade.Dal.Repository.Abstraction;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AccessFacade.Dal.Repository.Implementation
 {
     public class EFCoreProcedureRepository : IEFCoreProcedureRepository
     {
-        public readonly AccessFacadeOptions options;
+        private readonly EfCoreDbContext context;
 
-        public EFCoreProcedureRepository(IOptions<AccessFacadeOptions> options)
+
+        public EFCoreProcedureRepository(EfCoreDbContext context)
         {
-            if (options == null)
-            {
-                throw new ArgumentNullException(nameof(options));
-            }
-            this.options = options.Value;
+            this.context = context;
         }
 
-        public string Delete()
+        public void Delete()
         {
             throw new NotImplementedException();
         }
 
-        public string Insert()
+        public void Insert(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            throw new NotImplementedException();
+            var affRows = context.Database.ExecuteSqlCommand("dbo.insertProcedure @FirstName = {0}, @LastName = {1}, @Address = {2}, @FkOneToTestId = {3}", FirstName, LastName, Address, FkOneToTestId);
+            context.SaveChanges();
         }
 
-        public string Select()
+        public void Select()
         {
-            throw new NotImplementedException();
+            var userTest = context.UserTest.FromSql("dbo.selectProcedure").ToList();
         }
 
-        public string Update()
+        public void Update()
         {
             throw new NotImplementedException();
         }

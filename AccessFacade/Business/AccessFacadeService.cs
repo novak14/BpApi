@@ -8,18 +8,16 @@ namespace AccessFacade.Business
     public class AccessFacadeService
     {
         private IDapperSyncRepository dapperSync;
-        private ITestRepository testRepository;
 
-        public AccessFacadeService (IDapperSyncRepository dapperSync, ITestRepository testRepository)
+        public AccessFacadeService (IDapperSyncRepository dapperSync)
         {
             this.dapperSync = dapperSync;
-            this.testRepository = testRepository;
         }
 
         // Synchronize Dapper
         public string SelectDapperSync()
         {
-            var test = dapperSync.Select();
+            dapperSync.Select();
             return dapperSync.SelectTest();
         }
 
@@ -78,11 +76,6 @@ namespace AccessFacade.Business
         public string DeleteDapperProcedure()
         {
             return "test";
-        }
-
-        public string SelectTest()
-        {
-            return testRepository.Select();
         }
     }
 }

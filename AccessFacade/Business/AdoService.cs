@@ -24,20 +24,20 @@ namespace AccessFacade.Business
         // Synchronize Ado
         public string SelectAdoSync()
         {
-            var test = adoSyncRepository.Select();
+            adoSyncRepository.Select();
             return "test";
         }
 
         public string UpdateAdoSync()
         {
-            var test = adoSyncRepository.Update();
+            adoSyncRepository.Update();
 
             return "test";
         }
 
-        public string InsertAdoSync()
+        public string InsertAdoSync(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            var test = adoSyncRepository.Insert();
+            adoSyncRepository.Insert(FirstName, LastName, Address, FkOneToTestId);
 
             DateTime date = DateTime.Now;
             return "test";
@@ -45,7 +45,7 @@ namespace AccessFacade.Business
 
         public string DeleteAdoSync()
         {
-            var test = adoSyncRepository.Delete();
+            adoSyncRepository.Delete();
 
             return "test";
         }
@@ -53,27 +53,27 @@ namespace AccessFacade.Business
         // Asychronize Ado
         public string SelectAdoASync()
         {
-            var test = adoASyncRepository.Select();
+            adoASyncRepository.Select();
             return "test";
         }
 
         public string UpdateAdoASync()
         {
-            var test = adoASyncRepository.Update();
+            adoASyncRepository.Update();
 
             return "test";
         }
 
-        public string InsertAdoASync()
+        public string InsertAdoASync(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            var test = adoASyncRepository.Insert();
+            adoASyncRepository.Insert(FirstName, LastName, Address, FkOneToTestId);
 
             return "test";
         }
 
         public string DeleteAdoASync()
         {
-            var test = adoASyncRepository.Delete();
+            adoASyncRepository.Delete();
 
             return "test";
         }
@@ -81,28 +81,28 @@ namespace AccessFacade.Business
         // Procedure Ado
         public string SelectAdoProcedure()
         {
-            var test = adoProcedureRepository.Select();
+            adoProcedureRepository.Select();
 
             return "test";
         }
 
         public string UpdateAdoProcedure()
         {
-            var test = adoProcedureRepository.Update();
+            adoProcedureRepository.Update();
 
             return "test";
         }
 
-        public string InsertAdoProcedure()
+        public string InsertAdoProcedure(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            var test = adoProcedureRepository.Insert();
+            adoProcedureRepository.Insert(FirstName, LastName, Address, FkOneToTestId);
 
             return "test";
         }
 
         public string DeleteAdoProcedure()
         {
-            var test = adoProcedureRepository.Delete();
+            adoProcedureRepository.Delete();
 
             return "test";
         }

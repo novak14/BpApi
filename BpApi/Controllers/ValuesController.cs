@@ -42,7 +42,8 @@ namespace BpApi.Controllers
             stopwatch.Start();
             for (int i = 0; i < 1000; i++)
             {
-                string dapperSync = dapperService.SelectDapperSync();
+                //string adoSync = adoService.SelectAdoSync();
+                //string dapperSync = dapperService.SelectDapperSync();
                 //string efCoreSync = eFCoreService.SelectEFCoreSync();
             }
             stopwatch.Stop();
@@ -50,17 +51,17 @@ namespace BpApi.Controllers
             //string efCoreSync = eFCoreService.SelectEFCoreSync();
             #endregion
 
-            //#region Asynchronous
+            #region Asynchronous
             //string dapperASync = dapperService.SelectDapperASync();
             //string adoAsync = adoService.SelectAdoASync();
             //string efCoreAsync = eFCoreService.SelectEFCoreASync();
-            //#endregion
+            #endregion
 
-            //#region Procedures
+            #region Procedures
             //string dapperProcedure = dapperService.SelectDapperProcedure();
             //string adoProcedure = adoService.SelectAdoProcedure();
             //string efCoreProcedure = eFCoreService.SelectEFCoreProcedure();
-            //#endregion
+            #endregion
 
             //string time = accessFacadeService.SelectDapperSync();
             //Put(1, time);
@@ -71,29 +72,42 @@ namespace BpApi.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return accessFacadeService.SelectTest();
+            return dapperService.SelectDapperSync();
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post()
         {
+            ModelUserTest modelUser = new ModelUserTest();
+            for (int i = 0; i < 1000; i++)
+            {
+                ModelUserTest modelUserTest = new ModelUserTest();
+                modelUser.userTestCollection.collections.Add(modelUserTest);
+            }
             #region Sync
-            string dapperSync = dapperService.InsertDapperSync();
-            string adoSync = adoService.InsertAdoSync();
-            string efCoreSync = eFCoreService.InsertEFCoreSync();
+
+            //foreach (var item in modelUser.userTestCollection.collections)
+            //{
+            //    //string dapperSync = dapperService.InsertDapperSync(item.FirstName, item.LastName,item.Address,item.FkOneToTestId);
+            //    //string adoSync = adoService.InsertAdoSync(item.FirstName, item.LastName, item.Address, item.FkOneToTestId);
+            //    //string efCoreSync = eFCoreService.InsertEFCoreSync(item.FirstName, item.LastName, item.Address, item.FkOneToTestId);
+            //}
             #endregion
 
             #region Asynchronous
-            string dapperASync = dapperService.InsertDapperASync();
-            string adoAsync = adoService.InsertAdoASync();
-            string efCoreAsync = eFCoreService.InsertEFCoreASync();
+            //string dapperASync = dapperService.InsertDapperASync();
+            //string adoAsync = adoService.InsertAdoASync();
+            //string efCoreAsync = eFCoreService.InsertEFCoreASync();
             #endregion
 
             #region Procedures
-            string dapperProcedure = dapperService.InsertDapperProcedure();
-            string adoProcedure = adoService.InsertAdoProcedure();
-            string efCoreProcedure = eFCoreService.InsertEFCoreProcedure();
+            foreach (var item in modelUser.userTestCollection.collections)
+            {
+                //string dapperProcedure = dapperService.InsertDapperProcedure(item.FirstName, item.LastName, item.Address, item.FkOneToTestId);
+                //string adoProcedure = adoService.InsertAdoProcedure(item.FirstName, item.LastName, item.Address, item.FkOneToTestId);
+                //string efCoreProcedure = eFCoreService.InsertEFCoreProcedure(item.FirstName, item.LastName, item.Address, item.FkOneToTestId);
+            }
             #endregion
         }
 
@@ -108,15 +122,15 @@ namespace BpApi.Controllers
             #endregion
 
             #region Asynchronous
-            string dapperASync = dapperService.UpdateDapperASync();
-            string adoAsync = adoService.UpdateAdoASync();
-            string efCoreAsync = eFCoreService.UpdateEFCoreASync();
+            //string dapperASync = dapperService.UpdateDapperASync();
+            //string adoAsync = adoService.UpdateAdoASync();
+            //string efCoreAsync = eFCoreService.UpdateEFCoreASync();
             #endregion
 
             #region Procedures
-            string dapperProcedure = dapperService.UpdateDapperProcedure();
-            string adoProcedure = adoService.UpdateAdoProcedure();
-            string efCoreProcedure = eFCoreService.UpdateEFCoreProcedure();
+            //string dapperProcedure = dapperService.UpdateDapperProcedure();
+            //string adoProcedure = adoService.UpdateAdoProcedure();
+            //string efCoreProcedure = eFCoreService.UpdateEFCoreProcedure();
             #endregion
         }
 

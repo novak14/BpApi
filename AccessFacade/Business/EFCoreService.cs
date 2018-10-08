@@ -1,4 +1,5 @@
-﻿using AccessFacade.Dal.Repository.Abstraction;
+﻿using AccessFacade.Dal.Entities;
+using AccessFacade.Dal.Repository.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,90 +22,96 @@ namespace AccessFacade.Business
             this.eFCoreProcedureRepository = eFCoreProcedureRepository;
         }
 
+        #region sync
         // Synchronize EfCore
         public string SelectEFCoreSync()
         {
-            var test = eFCoreSyncRepository.Select();
+            eFCoreSyncRepository.Select();
             return "test";
         }
 
         public string UpdateEFCoreSync()
         {
-            var test = eFCoreSyncRepository.Update();
+            eFCoreSyncRepository.Update();
 
             return "test";
         }
 
-        public string InsertEFCoreSync()
+        public string InsertEFCoreSync(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            var test = eFCoreSyncRepository.Insert();
+            UserTestInsert userTestInsert = new UserTestInsert(FirstName, LastName, Address, FkOneToTestId);
+            eFCoreSyncRepository.Insert(userTestInsert);
 
-            DateTime date = DateTime.Now;
             return "test";
         }
 
         public string DeleteEFCoreSync()
         {
-            var test = eFCoreSyncRepository.Delete();
+            eFCoreSyncRepository.Delete();
 
             return "test";
         }
+        #endregion
 
+        #region async
         // Asychronize EfCore
         public string SelectEFCoreASync()
         {
-            var test = eFCoreASyncRepository.Select();
+            eFCoreASyncRepository.Select();
             return "test";
         }
 
         public string UpdateEFCoreASync()
         {
-            var test = eFCoreASyncRepository.Update();
+            eFCoreASyncRepository.Update();
 
             return "test";
         }
 
-        public string InsertEFCoreASync()
+        public string InsertEFCoreASync(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            var test = eFCoreASyncRepository.Insert();
+            eFCoreASyncRepository.Insert(FirstName, LastName, Address, FkOneToTestId);
 
             return "test";
         }
 
         public string DeleteEFCoreASync()
         {
-            var test = eFCoreASyncRepository.Delete();
+            eFCoreASyncRepository.Delete();
 
             return "test";
         }
+        #endregion
 
+        #region procedure
         // Procedure EfCore
         public string SelectEFCoreProcedure()
         {
-            var test = eFCoreProcedureRepository.Select();
+            eFCoreProcedureRepository.Select();
 
             return "test";
         }
 
         public string UpdateEFCoreProcedure()
         {
-            var test = eFCoreProcedureRepository.Update();
+            eFCoreProcedureRepository.Update();
 
             return "test";
         }
 
-        public string InsertEFCoreProcedure()
+        public string InsertEFCoreProcedure(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            var test = eFCoreProcedureRepository.Insert();
+            eFCoreProcedureRepository.Insert(FirstName, LastName, Address, FkOneToTestId);
 
             return "test";
         }
 
         public string DeleteEFCoreProcedure()
         {
-            var test = eFCoreProcedureRepository.Delete();
+            eFCoreProcedureRepository.Delete();
 
             return "test";
         }
+        #endregion
     }
 }

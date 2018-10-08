@@ -1,5 +1,6 @@
 ﻿using AccessFacade.Configuration;
 using AccessFacade.Dal.Context;
+using AccessFacade.Dal.Entities;
 using AccessFacade.Dal.Repository.Abstraction;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -19,30 +20,36 @@ namespace AccessFacade.Dal.Repository.Implementation
             this.context = context;
         }
 
-        public string Delete()
+        public void Delete()
         {
             throw new NotImplementedException();
         }
 
-        public string Insert()
+        public void Insert(UserTestInsert userTestInsert)
+        {
+            context.UserTestInsert.Add(userTestInsert);
+            context.SaveChanges();
+        }
+
+        public void Insert(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
             throw new NotImplementedException();
         }
 
-        public string Select()
+        public void Select()
         {
-            //#region normalSelect
-            //var normalSelect = context.UserTest;
-            //#endregion
+            #region normalSelect
+            var normalSelect = context.UserTest.ToList();
+            #endregion
 
             #region oneToMany
-            var test = context.UserTest
-                .Include(one => one.OneToTest);
+            //var test = context.UserTest
+            //    .Include(one => one.OneToTest)
+            //    .ToList();
             #endregion
-            return "ahoj";
         }
 
-        public string Update()
+        public void Update()
         {
             throw new NotImplementedException();
         }

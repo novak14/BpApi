@@ -37,7 +37,6 @@ namespace Microsoft.Extensions.DependencyInjection
 
             //REPOSITORY
             services.AddScoped<IDapperSyncRepository, DapperSyncRepository>();
-            services.AddScoped<ITestRepository, TestRepository>();
             services.AddScoped<IDapperAsyncRepository, DapperAsyncRepository>();
             services.AddScoped<IDapperProceudureRepository, DapperProcedureRepository>();
             services.AddScoped<IAdoSyncRepository, AdoSyncRepository>();

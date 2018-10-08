@@ -1,8 +1,13 @@
 ﻿using AccessFacade.Configuration;
+using AccessFacade.Dal.Entities;
 using AccessFacade.Dal.Repository.Abstraction;
+using Dapper;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace AccessFacade.Dal.Repository.Implementation
@@ -20,22 +25,30 @@ namespace AccessFacade.Dal.Repository.Implementation
             this.options = options.Value;
         }
 
-        public string Select()
+        public void Select()
+        {
+            using (SqlConnection connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = connection.Query<UserTest>("dbo.selectProcedure", commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+        public void Insert(string FirstName, string LastName, string Address, int FkOneToTestId)
+        {
+            using (SqlConnection connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = connection.Query<UserTest>("dbo.insertProcedure", 
+                    new { FirstName = FirstName, LastName = LastName, Address = Address, FkOneToTestId = FkOneToTestId },
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+        }
+
+        public void Delete()
         {
             throw new NotImplementedException();
         }
 
-        public string Insert()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Delete()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string Update()
+        public void Update()
         {
             throw new NotImplementedException();
         }

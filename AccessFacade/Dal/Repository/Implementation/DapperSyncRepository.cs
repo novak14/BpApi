@@ -26,14 +26,19 @@ namespace AccessFacade.Dal.Repository.Implementation
             this.options = options.Value;
         }
 
-        public string Delete()
+        public void Delete()
         {
             throw new NotImplementedException();
         }
 
-        public string Insert()
+        public void Insert(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            throw new NotImplementedException();
+            string sql = @"INSERT INTO UserTestInsert(FirstName, LastName, Address, FkOneToTestId) VALUES(@FirstName, @LastName, @Address, @FkOneToTestId)";
+
+            using (var connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = connection.Execute(sql, new { FirstName = FirstName, LastName = LastName, Address = Address, FkOneToTestId = FkOneToTestId });
+            }
         }
 
         public string InsertTest(DateTime date, string cas)
@@ -57,37 +62,31 @@ namespace AccessFacade.Dal.Repository.Implementation
             return testStopwatch;
         }
 
-        public string Select()
+        public void Select()
         {
-            //#region normalSelect
-            //string sql = @"SELECT * FROM UserTest";
-
-            //Stopwatch stopwatch = Stopwatch.StartNew();
-
-            //using (var connection = new SqlConnection(options.connectionString))
-            //{
-            //    var tmp = connection.Query<UserTest>(sql);
-            //}
-            //stopwatch.Stop();
-            //var testStopwatch = stopwatch.Elapsed.ToString();
-            //#endregion
-
-            #region oneToMany
-            string sqlOneToMany = @"SELECT * FROM UserTest INNER JOIN OneToTest ON OneToTest.Id = UserTest.FkOneToTestId";
-
+            #region normalSelect
+            string sql = @"SELECT * FROM UserTest";
 
             using (var connection = new SqlConnection(options.connectionString))
             {
-                var tmp = connection.Query<UserTest, OneToTest, UserTest>(sqlOneToMany, 
-                    (userTest, oneToTest) =>
-                    {
-                        userTest.OneToTest = oneToTest;
-                        return userTest;
-                    }).ToList();
+                var tmp = connection.Query<UserTest>(sql).ToList();
             }
-
             #endregion
-            return "ahoj";
+
+            #region oneToMany
+            //string sqlOneToMany = @"SELECT * FROM UserTest INNER JOIN OneToTest ON OneToTest.Id = UserTest.FkOneToTestId";
+
+            //using (var connection = new SqlConnection(options.connectionString))
+            //{
+            //    connection.Open();
+            //    var tmp = connection.Query<UserTest, OneToTest, UserTest>(sqlOneToMany, 
+            //        (userTest, oneToTest) =>
+            //        {
+            //            userTest.OneToTest = oneToTest;
+            //            return userTest;
+            //        }).ToList();
+            //}
+            #endregion
         }
 
         public string SelectTest()
@@ -106,7 +105,7 @@ namespace AccessFacade.Dal.Repository.Implementation
             return testStopwatch;
         }
 
-        public string Update()
+        public void Update()
         {
             throw new NotImplementedException();
         }

@@ -20,22 +20,22 @@ namespace AccessFacade.Dal.Repository.Implementation
             this.options = options.Value;
         }
 
-        public string Delete()
+        public void Delete()
         {
             throw new NotImplementedException();
         }
 
-        public string Insert()
+        public void Insert(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
             throw new NotImplementedException();
         }
 
-        public string Select()
+        public void Select()
         {
             throw new NotImplementedException();
         }
 
-        public string Update()
+        public void Update()
         {
             throw new NotImplementedException();
         }
