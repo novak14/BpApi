@@ -26,9 +26,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string InsertDapperSync()
+        public string InsertDapperSync(string FirstName)
         {
-            return "test";
+            return dapperSync.InsertTest(FirstName);
         }
 
         public string DeleteDapperSync()

@@ -35,7 +35,7 @@ namespace AccessFacade.Dal.Repository.Implementation
             throw new NotImplementedException();
         }
 
-        public void Update()
+        public void Update(string FirstName, int id)
         {
             throw new NotImplementedException();
         }

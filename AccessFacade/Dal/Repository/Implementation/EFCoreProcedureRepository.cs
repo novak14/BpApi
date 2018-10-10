@@ -36,9 +36,10 @@ namespace AccessFacade.Dal.Repository.Implementation
             var userTest = context.UserTest.FromSql("dbo.selectProcedure").ToList();
         }
 
-        public void Update()
+        public void Update(string FirstName, int id)
         {
-            throw new NotImplementedException();
+            var affRows = context.Database.ExecuteSqlCommand("dbo.updateProcedure @FirstName = {0}, @Id = {1}", FirstName, id);
+            context.SaveChanges();
         }
     }
 }

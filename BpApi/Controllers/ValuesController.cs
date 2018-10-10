@@ -40,7 +40,7 @@ namespace BpApi.Controllers
             #region Sync
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 2000; i++)
             {
                 //string adoSync = adoService.SelectAdoSync();
                 //string dapperSync = dapperService.SelectDapperSync();
@@ -112,14 +112,21 @@ namespace BpApi.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut()]
+        public void Put()
         {
+            Random random = new Random();
             #region Sync
-            string dapperSync = dapperService.UpdateDapperSync();
-            string adoSync = adoService.UpdateAdoSync();
-            string efCoreSync = eFCoreService.UpdateEFCoreSync();
+
+            for (int i = 0; i < 1000; i ++)
+            {
+                var firstName = random.GenerateRandomFirstName();
+                //string dapperSync = dapperService.UpdateDapperSync(firstName, id);
+                //string adoSync = adoService.UpdateAdoSync(firstName, id);
+                //string efCoreSync = eFCoreService.UpdateEFCoreSync(firstName, i);
+            }
             #endregion
+
 
             #region Asynchronous
             //string dapperASync = dapperService.UpdateDapperASync();
@@ -128,9 +135,13 @@ namespace BpApi.Controllers
             #endregion
 
             #region Procedures
-            //string dapperProcedure = dapperService.UpdateDapperProcedure();
-            //string adoProcedure = adoService.UpdateAdoProcedure();
-            //string efCoreProcedure = eFCoreService.UpdateEFCoreProcedure();
+            for (int i = 0; i < 1000; i++)
+            {
+                var firstName = random.GenerateRandomFirstName();
+                //string dapperProcedure = dapperService.UpdateDapperProcedure(firstName, i);
+                //string adoProcedure = adoService.UpdateAdoProcedure(firstName, i);
+                //string efCoreProcedure = eFCoreService.UpdateEFCoreProcedure(firstName, i);
+            }
             #endregion
         }
 

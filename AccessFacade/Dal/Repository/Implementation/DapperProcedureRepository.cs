@@ -48,9 +48,14 @@ namespace AccessFacade.Dal.Repository.Implementation
             throw new NotImplementedException();
         }
 
-        public void Update()
+        public void Update(string FirstName, int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = connection.Query<UserTest>("dbo.updateProcedure",
+                    new { FirstName = FirstName, Id = id },
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
         }
     }
 }

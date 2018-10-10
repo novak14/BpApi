@@ -41,15 +41,15 @@ namespace AccessFacade.Dal.Repository.Implementation
             }
         }
 
-        public string InsertTest(DateTime date, string cas)
+        public string InsertTest(string FirstName)
         {
-            string sql = @"INSERT INTO CasoveTesty(Datum, JinyCas) VALUES(@dat, @time)";
+            string sql = @"INSERT INTO UserTestUpdate(FirstName) VALUES(@FirstName)";
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             using (var connection = new SqlConnection(options.connectionString))
             {
-                var tmp = connection.Execute(sql, new { dat = date, time = cas });
+                var tmp = connection.Execute(sql, new { FirstName = FirstName });
                 if (tmp > 0)
                 {
                     int a = 3;
@@ -105,9 +105,14 @@ namespace AccessFacade.Dal.Repository.Implementation
             return testStopwatch;
         }
 
-        public void Update()
+        public void Update(string FirstName, int id)
         {
-            throw new NotImplementedException();
+            string sql = @"UPDATE UserTestUpdate SET FirstName = @FirstName WHERE Id = @Id";
+
+            using (var connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = connection.Execute(sql, new { FirstName = FirstName, Id = id });
+            }
         }
     }
 }

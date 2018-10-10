@@ -30,9 +30,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string UpdateDapperSync()
+        public string UpdateDapperSync(string FirstName, int id)
         {
-            dapperSync.Update();
+            dapperSync.Update(FirstName, id);
 
             return "test";
         }
@@ -60,9 +60,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string UpdateDapperASync()
+        public string UpdateDapperASync(string FirstName, int id)
         {
-            dapperAsyncRepository.Update();
+            dapperAsyncRepository.Update(FirstName, id);
 
             return "test";
         }
@@ -91,9 +91,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string UpdateDapperProcedure()
+        public string UpdateDapperProcedure(string FirstName, int id)
         {
-            dapperProcedureRepository.Update();
+            dapperProcedureRepository.Update(FirstName, id);
 
             return "test";
         }

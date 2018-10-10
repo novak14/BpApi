@@ -28,6 +28,7 @@ namespace AccessFacade.Dal.Context
 
         public DbSet<UserTest> UserTest { get; set; }
         public DbSet<UserTestInsert> UserTestInsert { get; set; }
+        public DbSet<UserTestUpdate> UserTestUpdate { get; set; }
         //public DbSet<OneToTest> OneToTest { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -30,9 +30,10 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string UpdateEFCoreSync()
+        public string UpdateEFCoreSync(string FirstName, int id)
         {
-            eFCoreSyncRepository.Update();
+            UserTestUpdate userTestUpdate = new UserTestUpdate(FirstName, id);
+            eFCoreSyncRepository.Update(userTestUpdate);
 
             return "test";
         }
@@ -61,9 +62,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string UpdateEFCoreASync()
+        public string UpdateEFCoreASync(string FirstName, int id)
         {
-            eFCoreASyncRepository.Update();
+            eFCoreASyncRepository.Update(FirstName, id);
 
             return "test";
         }
@@ -92,9 +93,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string UpdateEFCoreProcedure()
+        public string UpdateEFCoreProcedure(string FirstName, int id)
         {
-            eFCoreProcedureRepository.Update();
+            eFCoreProcedureRepository.Update(FirstName, id);
 
             return "test";
         }

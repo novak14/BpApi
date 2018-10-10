@@ -89,9 +89,26 @@ namespace AccessFacade.Dal.Repository.Implementation
             #endregion
         }
 
-        public void Update()
+        public void Update(string FirstName, int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(options.connectionString))
+            {
+                SqlCommand command = new SqlCommand("dbo.updateProcedure", connection);
+                try
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.Add("@FirstName", SqlDbType.VarChar, 50).Value = FirstName;
+                    command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+                    connection.Open();
+                    var affRows = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.ToString());
+                }
+            }
         }
     }
 }

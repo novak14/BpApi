@@ -28,9 +28,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string UpdateAdoSync()
+        public string UpdateAdoSync(string FirstName, int id)
         {
-            adoSyncRepository.Update();
+            adoSyncRepository.Update(FirstName, id);
 
             return "test";
         }
@@ -57,9 +57,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string UpdateAdoASync()
+        public string UpdateAdoASync(string FirstName, int id)
         {
-            adoASyncRepository.Update();
+            adoASyncRepository.Update(FirstName, id);
 
             return "test";
         }
@@ -86,9 +86,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string UpdateAdoProcedure()
+        public string UpdateAdoProcedure(string FirstName, int id)
         {
-            adoProcedureRepository.Update();
+            adoProcedureRepository.Update(FirstName, id);
 
             return "test";
         }

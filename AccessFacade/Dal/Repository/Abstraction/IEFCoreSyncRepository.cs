@@ -8,5 +8,6 @@ namespace AccessFacade.Dal.Repository.Abstraction
     public interface IEFCoreSyncRepository : BusinessObject
     {
         void Insert(UserTestInsert userTestInsert);
+        void Update(UserTestUpdate userTestUpdate);
     }
 }

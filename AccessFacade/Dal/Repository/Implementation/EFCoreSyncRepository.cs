@@ -49,9 +49,16 @@ namespace AccessFacade.Dal.Repository.Implementation
             #endregion
         }
 
-        public void Update()
+        public void Update(string FirstName, int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void Update(UserTestUpdate userTestUpdate)
+        {
+            context.UserTestUpdate.Update(userTestUpdate);
+            context.SaveChanges();
+
         }
     }
 }
