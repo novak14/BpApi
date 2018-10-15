@@ -43,9 +43,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string DeleteAdoSync()
+        public string DeleteAdoSync(int id)
         {
-            adoSyncRepository.Delete();
+            adoSyncRepository.Delete(id);
 
             return "test";
         }
@@ -71,9 +71,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string DeleteAdoASync()
+        public string DeleteAdoASync(int id)
         {
-            adoASyncRepository.Delete();
+            adoASyncRepository.Delete(id);
 
             return "test";
         }
@@ -100,9 +100,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string DeleteAdoProcedure()
+        public string DeleteAdoProcedure(int id)
         {
-            adoProcedureRepository.Delete();
+            adoProcedureRepository.Delete(id);
 
             return "test";
         }

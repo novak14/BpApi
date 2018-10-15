@@ -8,6 +8,6 @@ namespace AccessFacade.Dal.Repository.Abstraction
     public interface IDapperSyncRepository : BusinessObject
     {
         string SelectTest();
-        string InsertTest(string FirstName);
+        string InsertTest(string FirstName, int id);
     }
 }

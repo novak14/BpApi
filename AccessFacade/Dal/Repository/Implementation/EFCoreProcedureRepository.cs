@@ -20,9 +20,10 @@ namespace AccessFacade.Dal.Repository.Implementation
             this.context = context;
         }
 
-        public void Delete()
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var affRows = context.Database.ExecuteSqlCommand("dbo.deleteProcedure @Id = {0}", id);
+            context.SaveChanges();
         }
 
         public void Insert(string FirstName, string LastName, string Address, int FkOneToTestId)

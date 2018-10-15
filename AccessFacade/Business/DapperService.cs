@@ -44,9 +44,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string DeleteDapperSync()
+        public string DeleteDapperSync(int id)
         {
-            dapperSync.Delete();
+            dapperSync.Delete(id);
 
             return "test";
         }
@@ -74,9 +74,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string DeleteDapperASync()
+        public string DeleteDapperASync(int id)
         {
-            dapperAsyncRepository.Delete();
+            dapperAsyncRepository.Delete(id);
 
             return "test";
         }
@@ -105,9 +105,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string DeleteDapperProcedure()
+        public string DeleteDapperProcedure(int id)
         {
-            dapperProcedureRepository.Delete();
+            dapperProcedureRepository.Delete(id);
 
             return "test";
         }

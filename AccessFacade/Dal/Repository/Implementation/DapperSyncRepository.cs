@@ -26,9 +26,14 @@ namespace AccessFacade.Dal.Repository.Implementation
             this.options = options.Value;
         }
 
-        public void Delete()
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string sql = @"DELETE FROM UserTestDelete WHERE Id = @Id";
+
+            using (var connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = connection.Execute(sql, new { Id = id});
+            }
         }
 
         public void Insert(string FirstName, string LastName, string Address, int FkOneToTestId)
@@ -41,15 +46,15 @@ namespace AccessFacade.Dal.Repository.Implementation
             }
         }
 
-        public string InsertTest(string FirstName)
+        public string InsertTest(string FirstName, int id)
         {
-            string sql = @"INSERT INTO UserTestUpdate(FirstName) VALUES(@FirstName)";
+            string sql = @"INSERT INTO UserTestDelete(Id, FirstName) VALUES(@Id, @FirstName)";
 
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             using (var connection = new SqlConnection(options.connectionString))
             {
-                var tmp = connection.Execute(sql, new { FirstName = FirstName });
+                var tmp = connection.Execute(sql, new { Id = id, FirstName = FirstName });
                 if (tmp > 0)
                 {
                     int a = 3;

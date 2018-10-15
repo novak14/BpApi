@@ -20,9 +20,15 @@ namespace AccessFacade.Dal.Repository.Implementation
             this.context = context;
         }
 
-        public void Delete()
+        public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void Delete(UserTestDelete userTestDelete)
+        {
+            context.UserTestDelete.Remove(userTestDelete);
+            context.SaveChanges();
         }
 
         public void Insert(UserTestInsert userTestInsert)

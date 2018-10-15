@@ -40,8 +40,11 @@ namespace BpApi.Controllers
             #region Sync
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            for (int i = 0; i < 2000; i++)
+            for (int i = 1; i <= 2000; i++)
             {
+                Random random = new Random();
+                var test = accessFacadeService.InsertDapperSync(random.GenerateRandomFirstName(), i);
+
                 //string adoSync = adoService.SelectAdoSync();
                 //string dapperSync = dapperService.SelectDapperSync();
                 //string efCoreSync = eFCoreService.SelectEFCoreSync();
@@ -146,25 +149,33 @@ namespace BpApi.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete()]
+        public void Delete()
         {
+            Random random = new Random();
+
             #region Sync
-            string dapperSync = dapperService.DeleteDapperSync();
-            string adoSync = adoService.DeleteAdoSync();
-            string efCoreSync = eFCoreService.DeleteEFCoreSync();
+            for (int i = 1; i <= 2000; i ++)
+            {
+                //string dapperSync = dapperService.DeleteDapperSync(i);
+                //string adoSync = adoService.DeleteAdoSync(i);
+                //string efCoreSync = eFCoreService.DeleteEFCoreSync(i);
+            }
             #endregion
 
             #region Asynchronous
-            string dapperASync = dapperService.DeleteDapperASync();
-            string adoAsync = adoService.DeleteAdoASync();
-            string efCoreAsync = eFCoreService.DeleteEFCoreASync();
+            //string dapperASync = dapperService.DeleteDapperASync();
+            //string adoAsync = adoService.DeleteAdoASync();
+            //string efCoreAsync = eFCoreService.DeleteEFCoreASync();
             #endregion
 
             #region Procedures
-            string dapperProcedure = dapperService.DeleteDapperProcedure();
-            string adoProcedure = adoService.DeleteAdoProcedure();
-            string efCoreProcedure = eFCoreService.DeleteEFCoreProcedure();
+            for (int i = 1; i <= 2000; i ++)
+            {
+                //string dapperProcedure = dapperService.DeleteDapperProcedure(i);
+                //string adoProcedure = adoService.DeleteAdoProcedure(i);
+                //string efCoreProcedure = eFCoreService.DeleteEFCoreProcedure(i);
+            }
             #endregion
         }
     }

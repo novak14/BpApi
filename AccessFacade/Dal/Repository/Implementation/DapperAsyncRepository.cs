@@ -30,7 +30,7 @@ namespace AccessFacade.Dal.Repository.Implementation
             throw new NotImplementedException();
         }
 
-        public void Delete()
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }

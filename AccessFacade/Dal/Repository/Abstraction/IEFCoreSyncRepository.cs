@@ -9,5 +9,6 @@ namespace AccessFacade.Dal.Repository.Abstraction
     {
         void Insert(UserTestInsert userTestInsert);
         void Update(UserTestUpdate userTestUpdate);
+        void Delete(UserTestDelete userTestDelete);
     }
 }

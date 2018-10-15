@@ -46,9 +46,10 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string DeleteEFCoreSync()
+        public string DeleteEFCoreSync(int id)
         {
-            eFCoreSyncRepository.Delete();
+            UserTestDelete userTestDelete = new UserTestDelete(id);
+            eFCoreSyncRepository.Delete(userTestDelete);
 
             return "test";
         }
@@ -76,9 +77,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string DeleteEFCoreASync()
+        public string DeleteEFCoreASync(int id)
         {
-            eFCoreASyncRepository.Delete();
+            eFCoreASyncRepository.Delete(id);
 
             return "test";
         }
@@ -107,9 +108,9 @@ namespace AccessFacade.Business
             return "test";
         }
 
-        public string DeleteEFCoreProcedure()
+        public string DeleteEFCoreProcedure(int id)
         {
-            eFCoreProcedureRepository.Delete();
+            eFCoreProcedureRepository.Delete(id);
 
             return "test";
         }

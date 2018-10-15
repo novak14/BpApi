@@ -22,9 +22,24 @@ namespace AccessFacade.Dal.Repository.Implementation
             }
             this.options = options.Value;
         }
-        public void Delete()
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string query = @"DELETE FROM UserTestDelete WHERE Id = @Id";
+            using (SqlConnection connection = new SqlConnection(options.connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                try
+                {
+                    command.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+                    connection.Open();
+                    var affRows = command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(nameof(ex));
+                }
+            }
         }
 
         public void Insert(string FirstName, string LastName, string Address, int FkOneToTestId)

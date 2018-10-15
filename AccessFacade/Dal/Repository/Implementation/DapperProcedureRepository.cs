@@ -43,9 +43,14 @@ namespace AccessFacade.Dal.Repository.Implementation
             }
         }
 
-        public void Delete()
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = connection.Query<UserTest>("dbo.deleteProcedure",
+                    new { Id = id },
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
         }
 
         public void Update(string FirstName, int id)

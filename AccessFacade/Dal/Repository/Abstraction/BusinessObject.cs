@@ -9,6 +9,6 @@ namespace AccessFacade.Dal.Repository.Abstraction
         void Select();
         void Insert(string FirstName, string LastName, string Address, int FkOneToTestId);
         void Update(string FirstName, int id);
-        void Delete();
+        void Delete(int id);
     }
 }
