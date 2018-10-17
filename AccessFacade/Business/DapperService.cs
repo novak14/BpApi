@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AccessFacade.Business
 {
@@ -54,29 +55,29 @@ namespace AccessFacade.Business
 
         #region async
         // Asychronize Dapper
-        public string SelectDapperASync()
+        public async Task<string> SelectDapperASync()
         {
-            dapperAsyncRepository.Select();
+            await dapperAsyncRepository.SelectAsync();
             return "test";
         }
 
-        public string UpdateDapperASync(string FirstName, int id)
+        public async Task<string> UpdateDapperASync(string FirstName, int id)
         {
-            dapperAsyncRepository.Update(FirstName, id);
-
-            return "test";
-        }
-
-        public string InsertDapperASync(string FirstName, string LastName, string Address, int FkOneToTestId)
-        {
-            dapperAsyncRepository.Insert(FirstName, LastName, Address, FkOneToTestId);
+            await dapperAsyncRepository.UpdateAsync(FirstName, id);
 
             return "test";
         }
 
-        public string DeleteDapperASync(int id)
+        public async Task<string> InsertDapperASync(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            dapperAsyncRepository.Delete(id);
+            await dapperAsyncRepository.InsertAsync(FirstName, LastName, Address, FkOneToTestId);
+
+            return "test";
+        }
+
+        public async Task<string> DeleteDapperASync(int id)
+        {
+            await dapperAsyncRepository.DeleteAsync(id);
 
             return "test";
         }

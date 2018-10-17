@@ -3,6 +3,7 @@ using AccessFacade.Dal.Repository.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AccessFacade.Business
 {
@@ -57,29 +58,32 @@ namespace AccessFacade.Business
 
         #region async
         // Asychronize EfCore
-        public string SelectEFCoreASync()
+        public async Task<string> SelectEFCoreASync()
         {
-            eFCoreASyncRepository.Select();
+            await eFCoreASyncRepository.SelectAsync();
             return "test";
         }
 
-        public string UpdateEFCoreASync(string FirstName, int id)
+        public async Task<string> UpdateEFCoreASync(string FirstName, int id)
         {
-            eFCoreASyncRepository.Update(FirstName, id);
-
-            return "test";
-        }
-
-        public string InsertEFCoreASync(string FirstName, string LastName, string Address, int FkOneToTestId)
-        {
-            eFCoreASyncRepository.Insert(FirstName, LastName, Address, FkOneToTestId);
+            UserTestUpdate userTestUpdate = new UserTestUpdate(FirstName, id);
+            await eFCoreASyncRepository.UpdateAsync(userTestUpdate);
 
             return "test";
         }
 
-        public string DeleteEFCoreASync(int id)
+        public async Task<string> InsertEFCoreASync(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            eFCoreASyncRepository.Delete(id);
+            UserTestInsert userTestInsert = new UserTestInsert(FirstName, LastName, Address, FkOneToTestId);
+            await eFCoreASyncRepository.InsertAsync(userTestInsert);
+
+            return "test";
+        }
+
+        public async Task<string> DeleteEFCoreASync(int id)
+        {
+            UserTestDelete userTestDelete = new UserTestDelete(id);
+            await eFCoreASyncRepository.DeleteAsync(userTestDelete);
 
             return "test";
         }

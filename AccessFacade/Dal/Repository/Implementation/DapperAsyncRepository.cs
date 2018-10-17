@@ -1,9 +1,14 @@
 ﻿using AccessFacade.Configuration;
+using AccessFacade.Dal.Entities;
 using AccessFacade.Dal.Repository.Abstraction;
+using Dapper;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AccessFacade.Dal.Repository.Implementation
 {
@@ -20,24 +25,47 @@ namespace AccessFacade.Dal.Repository.Implementation
             this.options = options.Value;
         }
 
-        public void Select()
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            string sql = @"DELETE FROM UserTestDelete WHERE Id = @Id";
+
+            using (var connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = await connection.ExecuteAsync(sql, new { Id = id });
+            }
         }
 
-        public void Insert(string FirstName, string LastName, string Address, int FkOneToTestId)
+        public async Task InsertAsync(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            throw new NotImplementedException();
+            string sql = @"INSERT INTO UserTestInsert(FirstName, LastName, Address, FkOneToTestId) VALUES(@FirstName, @LastName, @Address, @FkOneToTestId)";
+
+            using (var connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = await connection.ExecuteAsync(sql, new { FirstName = FirstName, LastName = LastName, Address = Address, FkOneToTestId = FkOneToTestId });
+            }
         }
 
-        public void Delete(int id)
+        public async Task SelectAsync()
         {
-            throw new NotImplementedException();
+            #region normalSelect
+            string sql = @"SELECT * FROM UserTest";
+
+            using (var connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = await connection.QueryAsync<UserTest>(sql);
+                 tmp.ToList();
+            }
+            #endregion
         }
 
-        public void Update(string FirstName, int id)
+        public async Task UpdateAsync(string FirstName, int id)
         {
-            throw new NotImplementedException();
+            string sql = @"UPDATE UserTestUpdate SET FirstName = @FirstName WHERE Id = @Id";
+
+            using (var connection = new SqlConnection(options.connectionString))
+            {
+                var tmp = await connection.ExecuteAsync(sql, new { FirstName = FirstName, Id = id });
+            }
         }
     }
 }

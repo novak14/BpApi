@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AccessFacade.Dal.Repository.Abstraction
 {
-    public interface IAdoASyncRepository : BusinessObject
+    public interface IAdoASyncRepository : IBusinessObjectAsync
     {
     }
 }

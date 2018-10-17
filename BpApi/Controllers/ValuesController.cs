@@ -71,6 +71,14 @@ namespace BpApi.Controllers
             return stopwatch.Elapsed.ToString();
         }
 
+        [HttpGet("[action]")]
+        public async Task<string> GetAsync()
+        {
+            var dapperASync = await dapperService.SelectDapperASync();
+            string adoAsync = await adoService.SelectAdoASync();
+            string efCoreAsync = await eFCoreService.SelectEFCoreASync();
+            return "ahoj";
+        }
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -114,6 +122,24 @@ namespace BpApi.Controllers
             #endregion
         }
 
+        [HttpPost("[action]")]
+        public async Task PostAsync()
+        {
+            ModelUserTest modelUser = new ModelUserTest();
+            for (int i = 0; i < 10; i++)
+            {
+                ModelUserTest modelUserTest = new ModelUserTest();
+                modelUser.userTestCollection.collections.Add(modelUserTest);
+            }
+
+            foreach (var item in modelUser.userTestCollection.collections)
+            {
+                string dapperASync = await dapperService.InsertDapperASync(item.FirstName, item.LastName, item.Address, item.FkOneToTestId);
+                string adoAsync = await adoService.InsertAdoASync(item.FirstName, item.LastName, item.Address, item.FkOneToTestId);
+                string efCoreAsync = await eFCoreService.InsertEFCoreASync(item.FirstName, item.LastName, item.Address, item.FkOneToTestId);
+            }
+        }
+
         // PUT api/values/5
         [HttpPut()]
         public void Put()
@@ -129,7 +155,6 @@ namespace BpApi.Controllers
                 //string efCoreSync = eFCoreService.UpdateEFCoreSync(firstName, i);
             }
             #endregion
-
 
             #region Asynchronous
             //string dapperASync = dapperService.UpdateDapperASync();
@@ -148,12 +173,29 @@ namespace BpApi.Controllers
             #endregion
         }
 
+        [HttpPut("[action]")]
+        public async Task PutAsync()
+        {
+            Random random = new Random();
+
+            var firstName = random.GenerateRandomFirstName();
+            string dapperASync = await dapperService.UpdateDapperASync(firstName, 1);
+            string adoAsync = await adoService.UpdateAdoASync(firstName, 2);
+            string efCoreAsync = await eFCoreService.UpdateEFCoreASync(firstName, 3);
+
+            for (int i = 0; i < 1; i++)
+            {
+                //var firstName = random.GenerateRandomFirstName();
+                //string dapperASync = await dapperService.UpdateDapperASync(firstName,i);
+                //string adoAsync = await adoService.UpdateAdoASync(firstName, i);
+                //string efCoreAsync = await eFCoreService.UpdateEFCoreASync(firstName, i);
+            }
+        }
+
         // DELETE api/values/5
         [HttpDelete()]
         public void Delete()
         {
-            Random random = new Random();
-
             #region Sync
             for (int i = 1; i <= 2000; i ++)
             {
@@ -177,6 +219,21 @@ namespace BpApi.Controllers
                 //string efCoreProcedure = eFCoreService.DeleteEFCoreProcedure(i);
             }
             #endregion
+        }
+
+        [HttpDelete("[action]")]
+        public async Task DeleteAsync()
+        {
+            string dapperASync = await dapperService.DeleteDapperASync(1);
+            string adoAsync = await adoService.DeleteAdoASync(2);
+            string efCoreAsync = await eFCoreService.DeleteEFCoreASync(3);
+
+            for (int i = 1; i <= 2000; i++)
+            {
+                //string dapperASync = await dapperService.DeleteDapperASync(i);
+                //string adoAsync = await adoService.DeleteAdoASync(i);
+                //string efCoreAsync = await eFCoreService.DeleteEFCoreASync(i);
+            }
         }
     }
 }

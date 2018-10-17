@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AccessFacade.Business
 {
@@ -51,29 +52,29 @@ namespace AccessFacade.Business
         }
 
         // Asychronize Ado
-        public string SelectAdoASync()
+        public async Task<string> SelectAdoASync()
         {
-            adoASyncRepository.Select();
+            await adoASyncRepository.SelectAsync();
             return "test";
         }
 
-        public string UpdateAdoASync(string FirstName, int id)
+        public async Task<string> UpdateAdoASync(string FirstName, int id)
         {
-            adoASyncRepository.Update(FirstName, id);
-
-            return "test";
-        }
-
-        public string InsertAdoASync(string FirstName, string LastName, string Address, int FkOneToTestId)
-        {
-            adoASyncRepository.Insert(FirstName, LastName, Address, FkOneToTestId);
+            await adoASyncRepository.UpdateAsync(FirstName, id);
 
             return "test";
         }
 
-        public string DeleteAdoASync(int id)
+        public async Task<string> InsertAdoASync(string FirstName, string LastName, string Address, int FkOneToTestId)
         {
-            adoASyncRepository.Delete(id);
+            await adoASyncRepository.InsertAsync(FirstName, LastName, Address, FkOneToTestId);
+
+            return "test";
+        }
+
+        public async Task<string> DeleteAdoASync(int id)
+        {
+            await adoASyncRepository.DeleteAsync(id);
 
             return "test";
         }
